@@ -1,21 +1,31 @@
-import React from "react";
 import App from "next/app";
-import Head from "next/head";
+import React from "react";
+import { Provider } from "react-redux";
+import withRedux from "next-redux-wrapper";
+import withReduxSaga from "next-redux-saga";
 
-import "../styles/main.css";
+import createStore from "../store";
 
-class Main extends App {
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps({ ctx });
+    }
+
+    return { pageProps };
+  }
+
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
+    console.log(store);
     return (
-      <div className="w-screen h-screen bg-gray-100">
-        <Head>
-          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        </Head>
+      <Provider store={store}>
         <Component {...pageProps} />
-      </div>
+      </Provider>
     );
   }
 }
 
-export default Main;
+export default withRedux(createStore)(withReduxSaga(MyApp));

@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { incrementAsync, decrement, reset } from "../store/actions";
 
+import Button from "../components/Button";
+
 interface IProps {
   count: number;
   incrementAsync: () => IAction;
@@ -8,22 +10,21 @@ interface IProps {
   reset: () => IAction;
 }
 
-const Index = (props: IProps) => (
-  <div className="w-screen h-screen bg-gray-100">
-    hello, world! hehe {props.count}
-    <button onClick={props.incrementAsync}>increment</button>
-    <button onClick={props.decrement}>decrement</button>
-    <button onClick={props.reset}>reset</button>
-  </div>
-);
+const Index = (props: IProps) => {
+  return (
+    <div>
+      <span className="font-serif text-accent mr-1">
+        hello, world! {props.count}
+      </span>
+      <Button onClick={props.incrementAsync}>increment</Button>
+      <Button onClick={props.decrement}>decrement</Button>
+      <Button onClick={props.reset}>reset</Button>
+    </div>
+  );
+};
 
-export default connect(
-  ({ count }) => ({
-    count
-  }),
-  () => ({
-    incrementAsync,
-    decrement,
-    reset
-  })
-)(Index);
+export default connect(state => state, {
+  incrementAsync,
+  decrement,
+  reset
+})(Index);

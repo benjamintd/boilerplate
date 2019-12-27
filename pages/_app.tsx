@@ -6,7 +6,13 @@ import withReduxSaga from "next-redux-saga";
 
 import createStore from "../store";
 
-class MyApp extends App {
+import Layout from "../components/Layout";
+
+interface IApp {
+  store?: any;
+}
+
+class MyApp extends App<IApp> {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -19,10 +25,11 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-    console.log(store);
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     );
   }

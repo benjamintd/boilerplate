@@ -3,7 +3,7 @@
 This boilerplate repository should get you started for some opinionated web development.
 It is a Next app packed with linting, tailwind CSS and custom fonts.
 
-It uses redux and sagas to handle actions and asynchronicity.
+It uses SWR to handle server requests and asynchronous data.
 
 We use Typescript and VSCode to take advantage of typing and auto-complete.
 

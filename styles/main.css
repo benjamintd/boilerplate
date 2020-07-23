@@ -1,7 +1,10 @@
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+/* purgecss end ignore */
+
 @tailwind utilities;
 
 body {
-  @apply font-bold;
+  @apply p-0 m-0 text-gray-900;
 }

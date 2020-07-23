@@ -1,12 +1,12 @@
 import React from "react";
 import useSWR, { mutate } from "swr";
+
 import Button from "../components/Button";
 import fetcher from "../lib/fetcher";
 
-import "../styles/main.css";
-
 interface IProps {
   count: number;
+  here: number;
 }
 
 const Index = (props: IProps) => {
@@ -39,11 +39,6 @@ const Index = (props: IProps) => {
       </div>
     </div>
   );
-};
-
-// use for server side or client-side initial fetch
-Index.getInitialProps = async ({ req }) => {
-  return await fetcher("/api/count");
 };
 
 const updateCount = (count: number): Promise<{ data: { count: number } }> => {

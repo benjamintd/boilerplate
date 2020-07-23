@@ -1,11 +1,15 @@
-import React from "react";
-import Layout from "../components/Layout";
-
 import "../styles/main.css";
 
-function MyApp({ Component, pageProps }) {
+import { AppProps } from "next/app";
+import React from "react";
+
+import Layout from "../components/Layout";
+import Meta from "../components/Meta";
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
+      <Meta />
       <Component {...pageProps} />
     </Layout>
   );

@@ -1,15 +1,5 @@
-import Head from "next/head";
+import React, { ReactNode } from "react";
 
-import "../styles/main.css";
-
-export default ({ children }) => (
-  <>
-    <Head>
-      <link
-        href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
-        rel="stylesheet"
-      />
-    </Head>
-    <div className="w-screen h-screen bg-gray-100 p-2">{children}</div>
-  </>
-);
+export default function Layout({ children }: { children: ReactNode }) {
+  return <div className="w-screen h-screen bg-gray-100 p-2">{children}</div>;
+}

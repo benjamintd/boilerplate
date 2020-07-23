@@ -1,27 +1,40 @@
 module.exports = {
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  parser: "@typescript-eslint/parser",
   extends: [
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "tslint-config-prettier"
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: "module" // Allows for the use of imports
-  },
-  rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    "at-rule-no-unknown": [
-      true,
-      {
-        ignoreAtRules: ["extends", "tailwind"]
-      }
-    ]
+    ecmaVersion: 2018,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   settings: {
     react: {
-      version: "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+      version: "detect"
     }
+  },
+  plugins: [
+    "simple-import-sort"
+  ],
+  rules: {
+    "simple-import-sort/sort": "error",
+    "@typescript-eslint/interface-name-prefix": [0],
+    "@typescript-eslint/explicit-function-return-type": [0],
+    "@typescript-eslint/no-use-before-define": [0],
+    "@typescript-eslint/ban-ts-ignore": [0],
+    "@typescript-eslint/explicit-module-boundary-types": [0],
+    "@typescript-eslint/no-explicit-any": [0], // not great but there are places where it's useful
+    "@typescript-eslint/no-non-null-assertion": [0],
+    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "_" }],
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "shorthandFirst": true,
+      "reservedFirst": true,
+    }],
+    "react/no-unescaped-entities": [0]
   }
 };
